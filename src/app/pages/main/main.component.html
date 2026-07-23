@@ -1,0 +1,63 @@
+<ion-app>
+
+  <ion-menu contentId="main-content" type="overlay">
+    <ion-content class="ion-padding" scroll-y="false">
+
+      <div class="sidebar-shell">
+ 
+        <div class="brand-wrap">
+          <div class="brand-logo">
+            <lucide-icon [img]="LayoutDashboard"></lucide-icon>
+          </div>
+          <div class="brand-meta">
+            <h2>ToDo</h2>
+            <p>App</p>
+          </div>
+        </div> 
+        <div class="sidebar-scroll">
+
+          <ion-list lines="none" style="border-radius: 22px;">
+            <ion-menu-toggle auto-hide="true">
+
+              <!-- ===== PRINCIPAL ===== -->
+              <p class="menu-section">Principal</p>
+              <ion-item routerLink="/main/inicio" routerLinkActive="selected">
+                <lucide-icon slot="start" [img]="LayoutDashboard"></lucide-icon>
+                <ion-label>Tareas</ion-label>
+              </ion-item>
+
+              
+            </ion-menu-toggle>
+          </ion-list>
+
+        </div>
+ 
+        <div class="menu-footer">
+          <div class="glass-card user-box compact" (click)="logout()">
+            <lucide-icon slot="start" [img]="LogOut"></lucide-icon>
+            <ion-label>Salir</ion-label>
+          </div>
+          <div class="system-version compact ion-text-end">
+            <span><strong>V </strong>{{version}}</span>
+          </div>
+        </div>
+
+      </div>
+
+    </ion-content>
+  </ion-menu>
+
+  <!-- Main Content -->
+  <div id="main-content" class="main-shell">
+   <app-header [config]="config"></app-header>
+ 
+    <ion-content>
+      <router-outlet></router-outlet>
+    </ion-content>
+
+    <footer class="main-footer-fixed">
+      <span><strong>V </strong>{{version}}</span>
+    </footer>
+  </div>
+
+</ion-app>

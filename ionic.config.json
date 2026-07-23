@@ -1,0 +1,7 @@
+{
+  "name": "mi-pos",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

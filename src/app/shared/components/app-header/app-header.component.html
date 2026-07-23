@@ -1,0 +1,58 @@
+<!-- app-header.component.html -->
+<ion-header [class.header-transparent]="config.transparent">
+  <ion-toolbar>
+    <!-- ── SLOT START ──────────────────────────────── -->
+    <ion-buttons slot="start">
+      @if(config.iMostrarMenu){
+        <ion-menu-button></ion-menu-button>
+      }
+
+      <!-- Botón atrás -->
+      @if (config.showBack && !config.isModal) {
+        <ion-button
+          fill="clear"
+          (click)="onBack()">
+          <lucide-icon [img]="ArrowLeft"></lucide-icon>
+        </ion-button>
+      }
+
+    </ion-buttons>
+
+    <!-- ── TÍTULO ───────────────────────────────────── -->
+    <ion-title>
+      <div class="header-title-wrap">
+        <span class="header-title">{{ config.title }}</span>
+        @if (config.subtitle) {
+          <span class="header-subtitle">
+            {{ config.subtitle }}
+          </span>
+        }
+      </div>
+    </ion-title>
+
+    <!-- ── SLOT END ────────────────────────────────── -->
+    <ion-buttons slot="end">
+
+      <!-- Botón refresh -->
+      @if (config.showRefresh) {
+        <ion-button
+          fill="clear"
+          color="medium"
+          (click)="onRefresh()">
+          <lucide-icon [img]="RefreshCw"></lucide-icon>
+        </ion-button>
+      }
+
+      <!-- Botón cerrar modal — siempre al final -->
+      @if (config.isModal) {
+        <ion-button
+          fill="clear"
+          (click)="onClose()">
+          <lucide-icon [img]="X"></lucide-icon>
+        </ion-button>
+      }
+
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>

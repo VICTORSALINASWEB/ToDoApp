@@ -1,0 +1,98 @@
+<ion-content>
+  <app-titulo [config]="tituloConfig"></app-titulo>
+
+  <ion-searchbar placeholder="Buscar tarea..." [debounce]="300" (ionInput)="onBuscar($event)">
+  </ion-searchbar>
+
+
+  <mat-tab-group>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <lucide-icon [img]="ListTodo" size="16" class="mr-2"></lucide-icon>
+        <span>Todas</span>
+      </ng-template>
+      <div class="pt-6">
+        @if(tareaTodos.length > 0){
+        <ion-list>
+          @for (itemTarea of tareaTodos; track itemTarea.iIdTarea) {
+          <app-item-tarea [tarea]="itemTarea" />
+          }
+        </ion-list>
+        }@else {
+        <div class="flex flex-col items-center gap-2.5 text-slate-400">
+          <lucide-icon [img]="ClipboardList" size="28"></lucide-icon>
+          <span class="text-[13px] font-medium">No hay tareas para mostrar</span>
+        </div>
+        }
+      </div>
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <lucide-icon [img]="List" size="16" class="mr-2"></lucide-icon>
+        <span>Pendientes </span> <strong> ({{ totalPendientes }})</strong>
+      </ng-template>
+      <div class="pt-6">
+        @if(tareaPendientes.length > 0){
+        <ion-list>
+          @for (itemTarea of tareaPendientes; track itemTarea.iIdTarea){
+          <app-item-tarea [tarea]="itemTarea" />
+          }
+        </ion-list>
+        }@else {
+        <div class="flex flex-col items-center gap-2.5 text-slate-400">
+          <lucide-icon [img]="ClipboardList" size="28"></lucide-icon>
+          <span class="text-[13px] font-medium">No hay tareas pendientes para mostrar</span>
+        </div>
+        }
+      </div>
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <lucide-icon [img]="ListCheck" size="16" class="mr-2"></lucide-icon>
+        <span>Completadas</span>
+      </ng-template>
+      <div class="pt-6">
+        @if(tareaCompletadas.length > 0){
+        <ion-list>
+          @for (itemTarea of tareaCompletadas; track itemTarea.iIdTarea) {
+          <app-item-tarea [tarea]="itemTarea" />
+          }
+
+        </ion-list>
+        }@else {
+        <div class="flex flex-col items-center gap-2.5 text-slate-400">
+          <lucide-icon [img]="ClipboardList" size="28"></lucide-icon>
+          <span class="text-[13px] font-medium">No hay tareas completadas para mostrar</span>
+        </div>
+        }
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+
+
+  <!-- <ion-segment [value]="filtro()" (ionChange)="onFiltroChange($event)">
+    <ion-segment-button value="todas">
+      <ion-label>Todas</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="pendientes">
+      <ion-label>Pendientes ({{ totalPendientes() }})</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="completadas">
+      <ion-label>Completadas</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  @if(tareasFiltradas().length === 0){
+    <div class="empty-state" >
+      <lucide-icon [img]="ClipboardList" size="48"></lucide-icon>
+      <p>No hay tareas para mostrar</p>
+    </div>
+  }
+   -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="nuevaTarea()">
+      <lucide-icon [img]="Plus"></lucide-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

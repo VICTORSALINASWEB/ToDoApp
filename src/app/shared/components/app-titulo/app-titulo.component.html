@@ -1,0 +1,14 @@
+<div class="page-header" style="padding: 15px 15px 25px 15px;">
+  <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+    <div>
+      <h1 class="page-title">{{ config.title }}</h1>
+      <p class="page-subtitle">{{ config.subtitle }}</p>
+    </div>
+
+    @if (config.mostrarRefresh) {
+      <ion-button color="primary" (click)="refrescar()">
+        <lucide-icon [img]="RefreshCcw"></lucide-icon>
+      </ion-button>
+    }
+  </div>
+</div>

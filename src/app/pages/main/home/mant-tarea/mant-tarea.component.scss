@@ -1,0 +1,14 @@
+.w-full {
+  width: 100%;
+}
+
+.space-y-4 > * + * {
+  margin-top: 1rem;
+}
+
+::ng-deep {
+  // Ajuste para que los inputs de Material se vean bien dentro del modal
+  .mat-mdc-form-field {
+    width: 100%;
+  }
+}

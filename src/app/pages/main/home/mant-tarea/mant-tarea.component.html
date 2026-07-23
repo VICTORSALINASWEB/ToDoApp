@@ -1,0 +1,40 @@
+<app-header [config]="config"></app-header>
+<ion-content class="ion-padding">
+  <mat-card>
+    <mat-card-content>
+
+      <form [formGroup]="tareaForm" class="space-y-4">
+
+        <!-- Nombre de la categoría -->
+        <mat-form-field  class="w-full">
+          <mat-label>Nombre de la categoría</mat-label>
+          <input matInput formControlName="vTitulo" placeholder="nueva tarea">
+          @if (tareaForm.get('nombre')?.invalid && tareaForm.get('nombre')?.touched) {
+            <mat-error>El nombre es requerido (mínimo 3 caracteres)</mat-error>
+          }
+        </mat-form-field>
+
+        <!-- Descripción -->
+        <mat-form-field  class="w-full">
+          <mat-label>Descripción</mat-label>
+          <textarea matInput formControlName="vDescripcion" rows="3" placeholder="Descripción opcional de la categoría"></textarea>
+        </mat-form-field>
+ 
+      </form>
+
+    </mat-card-content>
+  </mat-card>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar class="ion-text-end">
+    <ion-button color="danger" (click)="closeClick()">
+      <lucide-icon [img]="X" size="18" style="margin-right: 8px;"></lucide-icon>
+      Cancelar
+    </ion-button>
+    <ion-button color="success" (click)="guardar()" [disabled]="tareaForm.invalid">
+      <lucide-icon [img]="Save" size="18" style="margin-right: 8px;"></lucide-icon>
+      Guardar
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

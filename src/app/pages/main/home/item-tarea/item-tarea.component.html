@@ -1,0 +1,29 @@
+<ion-item-sliding >
+  <ion-item [class.completada]="tarea.bCompletada">
+    <ion-checkbox
+      slot="start"
+      [checked]="tarea.bCompletada"
+      (ionChange)="toggleCompletada(tarea)">
+    </ion-checkbox>
+
+    <ion-label>
+      <h2>{{ tarea.vTitulo }}</h2>
+      @if(tarea.vDescripcion){
+        <p>{{ tarea.vDescripcion }}</p>
+      }
+    </ion-label>
+
+    <ion-badge [color]="colorPrioridad(tarea.iPrioridad)" slot="end">
+      {{ tarea.iPrioridad }}
+    </ion-badge>
+  </ion-item>
+
+  <ion-item-options side="end">
+    <ion-item-option color="primary" (click)="editarTarea(tarea)">
+      <lucide-icon [img]="Pencil"></lucide-icon>
+    </ion-item-option>
+    <ion-item-option color="danger" (click)="confirmarEliminar(tarea, $any($event.target).closest('ion-item-sliding'))">
+      <lucide-icon [img]="Trash2"></lucide-icon>
+    </ion-item-option>
+  </ion-item-options>
+</ion-item-sliding>

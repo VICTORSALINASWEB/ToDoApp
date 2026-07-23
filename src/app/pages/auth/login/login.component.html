@@ -1,0 +1,55 @@
+<div class="login-wrapper">
+  <!-- Ola superior -->
+  <svg class="wave wave-top" viewBox="0 0 1440 320">
+    <path fill="#10b981" fill-opacity="0.25"
+      d="M0,96L48,128C96,160,192,224,288,218.7C384,213,480,139,576,117.3C672,96,768,128,864,144C960,160,1056,160,1152,138.7C1248,117,1344,75,1392,53.3L1440,32V0H0Z">
+    </path>
+  </svg>
+
+  <div class="login-card">
+
+    <div class="text-center mb-4">
+      <i class="pi pi-user text-5xl text-primary mb-3"></i>
+      <h2 class="title">Bienvenido</h2>
+      <span class="subtitle">Inicia sesión para continuar</span>
+    </div>
+
+    <form [formGroup]="form" class="form" autocomplete="off">
+      <!-- Usuario -->
+        <mat-form-field  class="w-full">
+          <mat-label>Usuario</mat-label>
+          <input matInput (input)="convertirMayusculas($event)" formControlName="p_usuario" placeholder="">
+        </mat-form-field>
+      <!-- Contraseña -->
+      <mat-form-field  class="w-full">
+        <mat-label>Contraseña</mat-label>
+        <input matInput [type]="hide() ? 'password' : 'text'" formControlName="p_password_hash" />
+        <button
+          matIconButton
+          matSuffix
+          (click)="clickEvent($event)"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide()"
+        >
+          <lucide-icon [img]="(hide() ? EyeOff : Eye)"></lucide-icon>
+        </button>
+      </mat-form-field>
+      <ion-button color="primary" (click)="loguearse()">
+        <lucide-icon [img]="LogIn"></lucide-icon>
+        Loguearse
+      </ion-button>
+      <div class="text-center">
+        <strong>Vesión {{version}}</strong>
+      </div>
+    </form>
+
+  </div>
+
+  <!-- Ola inferior -->
+  <svg class="wave wave-bottom" viewBox="0 0 1440 320">
+    <path fill="#10b981" fill-opacity="0.35"
+      d="M0,224L60,197.3C120,171,240,117,360,101.3C480,85,600,107,720,138.7C840,171,960,213,1080,213.3C1200,213,1320,171,1380,149.3L1440,128V320H0Z">
+    </path>
+  </svg>
+
+</div>

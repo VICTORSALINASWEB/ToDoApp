@@ -1,0 +1,181 @@
+
+/* =========================================================
+   VARIABLES.SCSS
+   CPI Comercial — Design Tokens
+========================================================= */
+
+:root {
+ 
+  /* ────────────────────────────────────────────────────
+     PRIMARY — Verde CPI
+  ──────────────────────────────────────────────────── */
+  --ion-color-primary:          #059669;
+  --ion-color-primary-rgb:      5, 150, 105;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade:    #047857;
+  --ion-color-primary-tint:     #10b981;
+
+  /* ────────────────────────────────────────────────────
+     SECONDARY — Azul
+  ──────────────────────────────────────────────────── */
+  --ion-color-secondary:          #2563eb;
+  --ion-color-secondary-rgb:      37, 99, 235;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+  --ion-color-secondary-shade:    #1d4ed8;
+  --ion-color-secondary-tint:     #3b82f6;
+
+  /* ────────────────────────────────────────────────────
+     TERTIARY — Violeta
+  ──────────────────────────────────────────────────── */
+  --ion-color-tertiary:          #7c3aed;
+  --ion-color-tertiary-rgb:      124, 58, 237;
+  --ion-color-tertiary-contrast: #ffffff;
+  --ion-color-tertiary-contrast-rgb: 255, 255, 255;
+  --ion-color-tertiary-shade:    #6d28d9;
+  --ion-color-tertiary-tint:     #8b5cf6;
+
+  /* ────────────────────────────────────────────────────
+     SUCCESS — Verde claro
+  ──────────────────────────────────────────────────── */
+  --ion-color-success:          #16a34a;
+  --ion-color-success-rgb:      22, 163, 74;
+  --ion-color-success-contrast: #ffffff;
+  --ion-color-success-contrast-rgb: 255, 255, 255;
+  --ion-color-success-shade:    #15803d;
+  --ion-color-success-tint:     #22c55e;
+
+  /* ────────────────────────────────────────────────────
+     WARNING — Ámbar
+  ──────────────────────────────────────────────────── */
+  --ion-color-warning:          #d97706;
+  --ion-color-warning-rgb:      217, 119, 6;
+  --ion-color-warning-contrast: #ffffff;
+  --ion-color-warning-contrast-rgb: 255, 255, 255;
+  --ion-color-warning-shade:    #b45309;
+  --ion-color-warning-tint:     #f59e0b;
+
+  /* ────────────────────────────────────────────────────
+     DANGER — Rojo
+  ──────────────────────────────────────────────────── */
+  --ion-color-danger:          #dc2626;
+  --ion-color-danger-rgb:      220, 38, 38;
+  --ion-color-danger-contrast: #ffffff;
+  --ion-color-danger-contrast-rgb: 255, 255, 255;
+  --ion-color-danger-shade:    #b91c1c;
+  --ion-color-danger-tint:     #ef4444;
+
+  /* ────────────────────────────────────────────────────
+     LIGHT
+  ──────────────────────────────────────────────────── */
+  --ion-color-light:          #f1f5f9;
+  --ion-color-light-rgb:      241, 245, 249;
+  --ion-color-light-contrast: #0f172a;
+  --ion-color-light-contrast-rgb: 15, 23, 42;
+  --ion-color-light-shade:    #e2e8f0;
+  --ion-color-light-tint:     #f8fafc;
+
+  /* ────────────────────────────────────────────────────
+     MEDIUM — Gris slate
+  ──────────────────────────────────────────────────── */
+  --ion-color-medium:          #64748b;
+  --ion-color-medium-rgb:      100, 116, 139;
+  --ion-color-medium-contrast: #ffffff;
+  --ion-color-medium-contrast-rgb: 255, 255, 255;
+  --ion-color-medium-shade:    #475569;
+  --ion-color-medium-tint:     #94a3b8;
+
+  /* ────────────────────────────────────────────────────
+     DARK — Slate oscuro
+  ──────────────────────────────────────────────────── */
+  --ion-color-dark:          #0f172a;
+  --ion-color-dark-rgb:      15, 23, 42;
+  --ion-color-dark-contrast: #ffffff;
+  --ion-color-dark-contrast-rgb: 255, 255, 255;
+  --ion-color-dark-shade:    #020617;
+  --ion-color-dark-tint:     #1e293b;
+
+  /* ────────────────────────────────────────────────────
+     BACKGROUND & SURFACE
+  ──────────────────────────────────────────────────── */
+  --ion-background-color:         #f8fafc;
+  --ion-background-color-rgb:     248, 250, 252;
+  --ion-item-background:          #ffffff;
+  --ion-toolbar-background:       rgba(255,255,255,0.82);
+  --ion-card-background:          rgba(255,255,255,0.92);
+  --ion-tab-bar-background:       rgba(255,255,255,0.95);
+  --ion-popover-background:       #ffffff;
+
+  /* ────────────────────────────────────────────────────
+     TEXT
+  ──────────────────────────────────────────────────── */
+  --ion-text-color:               #0f172a;
+  --ion-text-color-rgb:           15, 23, 42;
+  --ion-text-color-step-50:       #1e293b;
+  --ion-text-color-step-100:      #334155;
+  --ion-text-color-step-200:      #475569;
+  --ion-text-color-step-300:      #64748b;
+  --ion-text-color-step-400:      #94a3b8;
+  --ion-text-color-step-500:      #cbd5e1;
+
+  /* ────────────────────────────────────────────────────
+     BORDERS
+  ──────────────────────────────────────────────────── */
+  --ion-border-color:             #e2e8f0;
+  --ion-border-color-subtle:      #f1f5f9;
+
+  /* ────────────────────────────────────────────────────
+     TYPOGRAPHY
+  ──────────────────────────────────────────────────── */
+  --ion-font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+
+  /* Radius */
+  --app-radius-xs:  8px;
+  --app-radius-sm:  12px;
+  --app-radius-md:  18px;
+  --app-radius-lg:  24px;
+  --app-radius-xl:  32px;
+  --app-radius-full: 999px;
+
+  /* Shadows */
+  --app-shadow-xs:   0 1px 3px rgba(15,23,42,0.04);
+  --app-shadow-sm:   0 4px 12px rgba(15,23,42,0.06);
+  --app-shadow-card: 0 6px 24px rgba(15,23,42,0.06);
+  --app-shadow-md:   0 10px 30px rgba(15,23,42,0.08);
+  --app-shadow-lg:   0 20px 50px rgba(15,23,42,0.12);
+  --app-shadow-hover:0 14px 34px rgba(15,23,42,0.10);
+  --app-shadow-xl:   0 40px 100px rgba(15,23,42,0.18);
+
+  /* Glassmorphism */
+  --app-glass-bg:     rgba(255,255,255,0.72);
+  --app-glass-border: rgba(255,255,255,0.45);
+  --app-glass-blur:   blur(16px);
+
+  /* Brand surfaces */
+  --app-surface-primary:   #f0fdf4;
+  --app-surface-secondary: #eff6ff;
+  --app-surface-tertiary:  #f5f3ff;
+  --app-surface-warning:   #fffbeb;
+  --app-surface-danger:    #fef2f2;
+  --app-surface-neutral:   #f8fafc;
+
+  /* Brand tints */
+  --app-tint-primary:   #d1fae5;
+  --app-tint-secondary: #dbeafe;
+  --app-tint-tertiary:  #ede9fe;
+  --app-tint-warning:   #fef3c7;
+  --app-tint-danger:    #fee2e2;
+  --app-tint-medium:    #f1f5f9;
+
+  /* Transitions */
+  --app-transition-fast:   all .15s ease;
+  --app-transition-normal: all .25s ease;
+  --app-transition-slow:   all .35s ease;
+
+  /* Z-index */
+  --app-z-dropdown: 100;
+  --app-z-modal:    200;
+  --app-z-toast:    300;
+  --app-z-tooltip:  400;
+}

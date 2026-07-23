@@ -1,0 +1,211 @@
+ion-menu ion-content {
+  --background: var(--ion-item-background, var(--ion-background-color, #fff));
+}
+
+ion-menu.md ion-content {
+  --padding-start: 8px;
+  --padding-end: 8px;
+  --padding-top: 20px;
+  --padding-bottom: 20px;
+}
+
+ion-menu.md ion-list {
+  padding: 20px 0;
+}
+
+ion-menu.md ion-note {
+  margin-bottom: 30px;
+}
+
+ion-menu.md ion-list-header,
+ion-menu.md ion-note {
+  padding-left: 10px;
+}
+
+ion-menu.md ion-list#inbox-list {
+  border-bottom: 1px solid var(--ion-background-color-step-150, #d7d8da);
+}
+
+ion-menu.md ion-list#inbox-list ion-list-header {
+  font-size: 22px;
+  font-weight: 600;
+
+  min-height: 20px;
+}
+
+ion-menu.md ion-list#labels-list ion-list-header {
+  font-size: 16px;
+
+  margin-bottom: 18px;
+
+  color: #757575;
+
+  min-height: 26px;
+}
+
+ion-menu.md ion-item {
+  --padding-start: 10px;
+  --padding-end: 10px;
+  border-radius: 4px;
+}
+
+ion-menu.md ion-item.selected {
+  --background: rgba(var(--ion-color-primary-rgb), 0.14);
+}
+
+ion-menu.md ion-item.selected ion-icon {
+  color: var(--ion-color-primary);
+}
+
+ion-menu.md ion-item ion-icon {
+  color: #616e7e;
+}
+
+ion-menu.md ion-item ion-label {
+  font-weight: 500;
+}
+
+ion-menu.ios ion-content {
+  --padding-bottom: 20px;
+}
+
+ion-menu.ios ion-list {
+  padding: 20px 0 0 0;
+}
+
+ion-menu.ios ion-note {
+  line-height: 24px;
+  margin-bottom: 20px;
+}
+
+ion-menu.ios ion-item {
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --min-height: 50px;
+}
+
+ion-menu.ios ion-item.selected ion-icon {
+  color: var(--ion-color-primary);
+}
+
+ion-menu.ios ion-item ion-icon {
+  font-size: 24px;
+  color: #73849a;
+}
+
+ion-menu.ios ion-list#labels-list ion-list-header {
+  margin-bottom: 8px;
+}
+
+ion-menu.ios ion-list-header,
+ion-menu.ios ion-note {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+ion-menu.ios ion-note {
+  margin-bottom: 8px;
+}
+
+ion-note {
+  display: inline-block;
+  font-size: 16px;
+
+  color: var(--ion-color-medium-shade);
+}
+
+ion-item.selected {
+  --color: var(--ion-color-primary);
+}
+
+
+//###############################
+//TABS
+//###############################
+// Estilos para Angular Material Tabs
+// Estilos para Angular Material Tabs con SCROLL
+::ng-deep {
+
+  // Contenedor principal de tabs
+  .mat-mdc-tab-group {
+    background: transparent;
+
+    // Cabecera de los tabs - ACTIVAR SCROLL
+    .mat-mdc-tab-header {
+      background: #ffffff;
+      margin-bottom: 10px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      border-top: 3px solid #e2e8f0;
+
+
+      .mat-mdc-tab-list {
+        .mat-mdc-tab-labels {
+          gap: 4px;
+
+          .mdc-tab {
+            transition: all 0.2s ease;
+            border-radius: 12px;
+            margin: 4px 2px;
+
+            // Fondo cuando NO está seleccionado
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+
+            // Ancho fijo para mejor scroll
+            min-width: 110px;
+            flex-shrink: 0;
+
+            // Texto y ícono cuando NO está seleccionado
+            color: #ffffff;
+            .mdc-tab__text-label {
+              color: #ffffff;
+
+              lucide-icon {
+                color: #2dd4bf;
+              }
+            }
+
+            // Hover
+            &:hover {
+              background: #475569;
+            }
+
+            // Tab SELECCIONADO
+            &.mdc-tab--active {
+              background: #f1f5f9;
+
+              .mdc-tab__text-label {
+                color: #64748b;
+                font-weight: 500;
+                letter-spacing: -0.01em;
+
+                lucide-icon {
+                  color: #64748b;
+                }
+
+              }
+            }
+          }
+        }
+      }
+
+
+    }
+
+    // Ripple effect (desactivado)
+    .mat-ripple-element {
+      display: none;
+    }
+  }
+
+  // Contenido de cada tab
+  .mat-mdc-tab-body-wrapper {
+    .tab-content {
+      padding: 20px;
+    }
+  }
+}
+ 
+
+//###############################
+//TABS
+//###############################
