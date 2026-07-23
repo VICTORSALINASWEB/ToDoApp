@@ -32,7 +32,17 @@
 
     <!-- ── SLOT END ────────────────────────────────── -->
     <ion-buttons slot="end">
-
+      @if (config.iMostrarMenu) {
+        @if (networkService.isOnline()) {
+          <ion-button fill="clear" color="success">
+            <lucide-icon [img]="Wifi"></lucide-icon>
+          </ion-button>
+        } @else {
+          <ion-button fill="clear" color="danger">
+            <lucide-icon [img]="WifiOff"></lucide-icon>
+          </ion-button>
+        }
+      }
       <!-- Botón refresh -->
       @if (config.showRefresh) {
         <ion-button

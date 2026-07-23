@@ -1,0 +1,84 @@
+.login-wrapper {
+  position: relative;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ecfdf5, #f0fdfa);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Card */
+.login-card {
+  z-index: 2;
+  background: #ffffff;
+  padding: 2.2rem;
+  width: 100%;
+  max-width: 380px;
+  border-radius: 0.75rem; // ⬅ menos redondeado
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.08),
+    0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Texto */
+.title {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+/* Form */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+/* Campos */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.field label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.field input {
+  border-radius: 0.4rem; // ⬅ más recto
+  padding: 0.65rem 0.75rem;
+}
+
+/* Botón */
+.login-btn {
+  margin-top: 0.5rem;
+  border-radius: 0.45rem;
+  padding: 0.7rem;
+  font-weight: 600;
+}
+
+/* Olas */
+.wave {
+  position: absolute;
+  width: 100%;
+  left: 0;
+}
+
+.wave-top {
+  top: 0;
+}
+
+.wave-bottom {
+  bottom: 0;
+}
+

@@ -1,14 +1,15 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { AlertController,IonItem, IonItemSliding, IonCheckbox, IonLabel, IonBadge, IonItemOptions, IonItemOption } from "@ionic/angular/standalone";
+import { AlertController,IonRow,IonCard, IonItemSliding, IonCheckbox, IonLabel, IonBadge, IonItemOptions, IonItemOption, IonCardSubtitle, IonCardHeader, IonCardContent, IonCardTitle, IonCol, IonButtons, IonIcon, IonButton, IonToggle, IonItem } from "@ionic/angular/standalone";
 import { Tarea } from 'src/app/core/interfaces/tarea.interface';
 import { Trash2, Pencil, LucideAngularModule   } from 'lucide-angular';
 @Component({
   selector: 'app-item-tarea',
   templateUrl: './item-tarea.component.html',
   styleUrls: ['./item-tarea.component.scss'],
+  standalone: true,
   imports:[
-    IonItem, IonItemSliding, IonItemOptions, IonItemOption,
-    IonCheckbox,IonBadge,IonLabel,LucideAngularModule
+    IonCol,IonRow,IonCardContent,IonCardHeader,IonCardTitle,IonCard,
+    IonCheckbox,IonBadge,IonButtons,IonButton,LucideAngularModule, IonItem
   ]
 })
 export class ItemTareaComponent  implements OnInit {
@@ -22,18 +23,4 @@ export class ItemTareaComponent  implements OnInit {
 
   ngOnInit() {}
 
-  colorPrioridad(prioridad: Tarea['iPrioridad']): string {
-    return { 1: 'danger', 2: 'warning', 3: 'medium' }[prioridad]??'';
-  }
-  toggleCompletada(tarea: Tarea) {
-  
-  }
-
-  async confirmarEliminar(tarea: Tarea, slidingItem: IonItemSliding) {
-    this.clickEliminar.emit(tarea);
-  }
-
-  editarTarea(tarea: Tarea) {
-    this.clickEliminar.emit(tarea);
-  }
 }

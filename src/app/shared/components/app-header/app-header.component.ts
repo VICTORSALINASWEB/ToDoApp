@@ -3,8 +3,9 @@ import { CommonModule } from '@angular/common';
 import {
   IonHeader, IonToolbar, IonTitle, IonButtons,
   IonButton, ModalController,IonMenuButton } from '@ionic/angular/standalone';
-import { LucideAngularModule, X, ArrowLeft, RefreshCw } from 'lucide-angular';
+import { LucideAngularModule, X, ArrowLeft, RefreshCw, WifiOff,Wifi } from 'lucide-angular';
 import { HeaderConfig } from '../../../core/interfaces/header-config.interface';
+import { NetworkService } from 'src/app/core/services/network.service';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +15,7 @@ import { HeaderConfig } from '../../../core/interfaces/header-config.interface';
   imports: [
     CommonModule,
     IonHeader, IonToolbar, IonTitle,
-    IonButtons, IonButton, 
+    IonButtons, IonButton,
     LucideAngularModule, IonMenuButton
   ],
 })
@@ -33,11 +34,15 @@ export class AppHeaderComponent implements OnInit {
   readonly X          = X;
   readonly ArrowLeft  = ArrowLeft;
   readonly RefreshCw  = RefreshCw;
+  readonly Wifi  = Wifi;
+  readonly WifiOff  = WifiOff;
 
-  constructor(private modalCtrl: ModalController) {}
+  constructor(private modalCtrl: ModalController,
+    public networkService: NetworkService
+  ) {}
 
   ngOnInit(): void {}
- 
+
   onBack(): void {
     this.backClick.emit();
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import {
   IonToolbar,
@@ -11,7 +11,7 @@ import {
 import { LucideAngularModule, Save, X, CircleCheckBig,Palette } from 'lucide-angular';
 import { HeaderConfig } from 'src/app/core/interfaces/header-config.interface';
 import { AppHeaderComponent } from 'src/app/shared/components/app-header/app-header.component';
- 
+
 
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -44,26 +44,36 @@ export class MantTareaComponent  implements OnInit {
   readonly Palette = Palette;
   config: HeaderConfig;
   tareaForm!: FormGroup;
-  
+  @Input() iIdTarea = 0;
   constructor(
     private fb: FormBuilder,
     private modalCtrl: ModalController
   ) {
     this.config = {
-      title: 'Nueva Tarea',
+      title: '',
       isModal: true
     };
+    this.tareaForm = this.fb.group({
+      vTitulo: ['', [Validators.required, Validators.minLength(3)]],
+      vDescripcion: ['']
+    });
   }
 
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.cargarDatos()
+  }
+
+  cargarDatos(){
+    this.config.title = this.iIdTarea === 0 ? 'Nueva Tarea':'Editar Tarea'
+  }
 
   guardar() {
     if (this.tareaForm.invalid) {
       this.tareaForm.markAllAsTouched();
       return;
     }
- 
+
 
     this.modalCtrl.dismiss({
       status: 200,

@@ -13,11 +13,77 @@
       </ng-template>
       <div class="pt-6">
         @if(tareaTodos.length > 0){
-        <ion-list>
-          @for (itemTarea of tareaTodos; track itemTarea.iIdTarea) {
-          <app-item-tarea [tarea]="itemTarea" />
-          }
-        </ion-list>
+          <ion-list class="task-list">
+
+              @for(itemTarea of tareaTodos; track itemTarea.iIdTarea){
+
+                  <!-- <app-item-tarea
+                      [tarea]="itemTarea">
+                  </app-item-tarea> -->
+                    <ion-card class="task-card">
+
+                      <ion-card-content>
+
+                        <div class="task-header">
+
+                          <div class="task-title">
+
+                            <ion-checkbox
+                              [checked]="itemTarea.bCompletada"
+                              (ionChange)="toggleCompletada(itemTarea)">
+                            </ion-checkbox>
+
+                            <div class="title-group">
+
+                              <h2>{{ itemTarea.vTitulo }}</h2>
+
+                              @if(itemTarea.vDescripcion){
+                                <p>{{ itemTarea.vDescripcion }}</p>
+                              }
+
+                            </div>
+
+                          </div>
+
+                          <ion-badge class="priority" [color]="colorPrioridad(itemTarea.iPrioridad)">
+                            {{ itemTarea.iPrioridad === 1 ? 'BAJA' :
+                              itemTarea.iPrioridad === 2 ? 'MEDIA' : 'ALTA' }}
+                          </ion-badge>
+
+                        </div>
+
+                        <div class="task-footer">
+
+                          <ion-button fill="clear" size="small"
+                            (click)="editaritemTarea(itemTarea)">
+
+                            <lucide-icon [img]="Pencil" size="16"></lucide-icon>
+
+                            Editar
+
+                          </ion-button>
+
+                          <ion-button
+                            fill="clear"
+                            color="danger"
+                            size="small"
+                            (click)="confirmarEliminar(itemTarea)">
+
+                            <lucide-icon [img]="Trash2" size="16"></lucide-icon>
+
+                            Eliminar
+
+                          </ion-button>
+
+                        </div>
+
+                      </ion-card-content>
+
+                    </ion-card>
+
+              }
+
+          </ion-list>
         }@else {
         <div class="flex flex-col items-center gap-2.5 text-slate-400">
           <lucide-icon [img]="ClipboardList" size="28"></lucide-icon>
@@ -36,7 +102,69 @@
         @if(tareaPendientes.length > 0){
         <ion-list>
           @for (itemTarea of tareaPendientes; track itemTarea.iIdTarea){
-          <app-item-tarea [tarea]="itemTarea" />
+          <!-- <app-item-tarea [tarea]="itemTarea" /> -->
+
+             <ion-card class="task-card">
+
+                      <ion-card-content>
+
+                        <div class="task-header">
+
+                          <div class="task-title">
+
+                            <ion-checkbox
+                              [checked]="itemTarea.bCompletada"
+                              (ionChange)="toggleCompletada(itemTarea)">
+                            </ion-checkbox>
+
+                            <div class="title-group">
+
+                              <h2>{{ itemTarea.vTitulo }}</h2>
+
+                              @if(itemTarea.vDescripcion){
+                                <p>{{ itemTarea.vDescripcion }}</p>
+                              }
+
+                            </div>
+
+                          </div>
+
+                          <ion-badge class="priority" [color]="colorPrioridad(itemTarea.iPrioridad)">
+                            {{ itemTarea.iPrioridad === 1 ? 'BAJA' :
+                              itemTarea.iPrioridad === 2 ? 'MEDIA' : 'ALTA' }}
+                          </ion-badge>
+
+                        </div>
+
+                        <div class="task-footer">
+
+                          <ion-button fill="clear" size="small"
+                            (click)="editaritemTarea(itemTarea)">
+
+                            <lucide-icon [img]="Pencil" size="16"></lucide-icon>
+
+                            Editar
+
+                          </ion-button>
+
+                          <ion-button
+                            fill="clear"
+                            color="danger"
+                            size="small"
+                            (click)="confirmarEliminar(itemTarea )">
+
+                            <lucide-icon [img]="Trash2" size="16"></lucide-icon>
+
+                            Eliminar
+
+                          </ion-button>
+
+                        </div>
+
+                      </ion-card-content>
+
+                    </ion-card>
+
           }
         </ion-list>
         }@else {
@@ -57,7 +185,68 @@
         @if(tareaCompletadas.length > 0){
         <ion-list>
           @for (itemTarea of tareaCompletadas; track itemTarea.iIdTarea) {
-          <app-item-tarea [tarea]="itemTarea" />
+          <!-- <app-item-tarea [tarea]="itemTarea" /> -->
+              <ion-card class="task-card">
+
+                      <ion-card-content>
+
+                        <div class="task-header">
+
+                          <div class="task-title">
+
+                            <ion-checkbox
+                              [checked]="itemTarea.bCompletada"
+                              (ionChange)="toggleCompletada(itemTarea)">
+                            </ion-checkbox>
+
+                            <div class="title-group">
+
+                              <h2>{{ itemTarea.vTitulo }}</h2>
+
+                              @if(itemTarea.vDescripcion){
+                                <p>{{ itemTarea.vDescripcion }}</p>
+                              }
+
+                            </div>
+
+                          </div>
+
+                          <ion-badge class="priority" [color]="colorPrioridad(itemTarea.iPrioridad)">
+                            {{ itemTarea.iPrioridad === 1 ? 'BAJA' :
+                              itemTarea.iPrioridad === 2 ? 'MEDIA' : 'ALTA' }}
+                          </ion-badge>
+
+                        </div>
+
+                        <div class="task-footer">
+
+                          <ion-button fill="clear" size="small"
+                            (click)="editaritemTarea(itemTarea)">
+
+                            <lucide-icon [img]="Pencil" size="16"></lucide-icon>
+
+                            Editar
+
+                          </ion-button>
+
+                          <ion-button
+                            fill="clear"
+                            color="danger"
+                            size="small"
+                            (click)="confirmarEliminar(itemTarea)">
+
+                            <lucide-icon [img]="Trash2" size="16"></lucide-icon>
+
+                            Eliminar
+
+                          </ion-button>
+
+                        </div>
+
+                      </ion-card-content>
+
+                    </ion-card>
+
           }
 
         </ion-list>
@@ -72,26 +261,8 @@
   </mat-tab-group>
 
 
-  <!-- <ion-segment [value]="filtro()" (ionChange)="onFiltroChange($event)">
-    <ion-segment-button value="todas">
-      <ion-label>Todas</ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="pendientes">
-      <ion-label>Pendientes ({{ totalPendientes() }})</ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="completadas">
-      <ion-label>Completadas</ion-label>
-    </ion-segment-button>
-  </ion-segment>
-  @if(tareasFiltradas().length === 0){
-    <div class="empty-state" >
-      <lucide-icon [img]="ClipboardList" size="48"></lucide-icon>
-      <p>No hay tareas para mostrar</p>
-    </div>
-  }
-   -->
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="nuevaTarea()">
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" >
+    <ion-fab-button (click)="nuevaTarea()" color="secondary">
       <lucide-icon [img]="Plus"></lucide-icon>
     </ion-fab-button>
   </ion-fab>

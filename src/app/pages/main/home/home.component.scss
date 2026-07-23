@@ -1,0 +1,113 @@
+.task-card{
+
+  margin: 12px 16px;
+
+  border-radius: 18px;
+
+  box-shadow:
+      0 4px 18px rgba(0,0,0,.08);
+
+  transition: .25s;
+
+  &:active{
+      transform: scale(.98);
+  }
+
+  ion-card-content{
+      padding:18px;
+  }
+
+}
+
+.task-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    gap:16px;
+
+}
+
+.task-title{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:14px;
+
+    flex:1;
+
+}
+
+.title-group{
+
+    flex:1;
+
+}
+
+.title-group h2{
+
+    margin:0;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    color:#222;
+
+}
+
+.title-group p{
+
+    margin-top:6px;
+
+    color:#6b7280;
+
+    font-size:14px;
+
+    line-height:1.5;
+
+}
+
+.task-footer{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:8px;
+
+    margin-top:16px;
+
+    border-top:1px solid #ececec;
+
+    padding-top:12px;
+
+}
+
+
+.priority{
+
+    border-radius:999px;
+
+    padding:6px 12px;
+
+    font-size:11px;
+
+    font-weight:700;
+
+    letter-spacing:.5px;
+
+}
+
+.task-list{
+
+    background:transparent;
+
+    padding:10px 0 30px;
+
+}

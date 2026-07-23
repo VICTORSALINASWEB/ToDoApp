@@ -5,21 +5,19 @@
 
       <form [formGroup]="tareaForm" class="space-y-4">
 
-        <!-- Nombre de la categoría -->
         <mat-form-field  class="w-full">
-          <mat-label>Nombre de la categoría</mat-label>
+          <mat-label>Titulo</mat-label>
           <input matInput formControlName="vTitulo" placeholder="nueva tarea">
-          @if (tareaForm.get('nombre')?.invalid && tareaForm.get('nombre')?.touched) {
-            <mat-error>El nombre es requerido (mínimo 3 caracteres)</mat-error>
+          @if (tareaForm.get('vTitulo')?.invalid && tareaForm.get('vTitulo')?.touched) {
+            <mat-error>El titulo es requerido (mínimo 3 caracteres)</mat-error>
           }
         </mat-form-field>
 
-        <!-- Descripción -->
         <mat-form-field  class="w-full">
           <mat-label>Descripción</mat-label>
-          <textarea matInput formControlName="vDescripcion" rows="3" placeholder="Descripción opcional de la categoría"></textarea>
+          <textarea matInput formControlName="vDescripcion" rows="3" placeholder="Descripción opcional de la tarea"></textarea>
         </mat-form-field>
- 
+
       </form>
 
     </mat-card-content>
