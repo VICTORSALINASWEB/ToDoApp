@@ -111,3 +111,31 @@
     padding:10px 0 30px;
 
 }
+
+.title-group {
+  h2 {
+    margin: 0 0 2px 0;
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .task-meta {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--ion-color-medium);
+    font-size: 11px;
+    margin-bottom: 6px;
+
+    lucide-icon {
+      color: var(--ion-color-medium);
+    }
+  }
+
+  p {
+    margin: 0;
+    font-size: 13px;
+    color: var(--ion-color-medium-shade);
+  }
+}
+ 

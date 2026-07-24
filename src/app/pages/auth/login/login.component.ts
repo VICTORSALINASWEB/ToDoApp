@@ -1,6 +1,6 @@
 import { Component, OnInit, signal } from '@angular/core';
 import packageInfo from './../../../../../package.json';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'; 
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -22,7 +22,7 @@ import { FormularioLogin } from '../../../core/interfaces/usuario.interface';
   imports: [IonButton,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatInputModule,
+    MatInputModule,RouterLink,
     LucideAngularModule, MatIconModule
   ]
 })

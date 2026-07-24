@@ -15,3 +15,8 @@ export interface DataUtil {
   token?: string; 
 }
 
+export interface Prioridad {  
+  iPrioridad?: number;
+  vDescripcion?: string; 
+}
+

@@ -17,6 +17,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { Prioridad } from 'src/app/core/interfaces/util.interface';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
 
 @Component({
   selector: 'app-mant-tarea',
@@ -33,7 +36,9 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatSelectModule,
+    MatOptionModule
   ]
 })
 export class MantTareaComponent  implements OnInit {
@@ -45,6 +50,21 @@ export class MantTareaComponent  implements OnInit {
   config: HeaderConfig;
   tareaForm!: FormGroup;
   @Input() iIdTarea = 0;
+
+  dataPrioridad: Prioridad[] = [
+    {
+      iPrioridad: 1,
+      vDescripcion: 'BAJA'
+    },
+    {
+      iPrioridad: 2,
+      vDescripcion: 'MEDIA'
+    },
+    {
+      iPrioridad: 3,
+      vDescripcion: 'ALTA'
+    }
+  ];
   constructor(
     private fb: FormBuilder,
     private modalCtrl: ModalController
@@ -55,7 +75,8 @@ export class MantTareaComponent  implements OnInit {
     };
     this.tareaForm = this.fb.group({
       vTitulo: ['', [Validators.required, Validators.minLength(3)]],
-      vDescripcion: ['']
+      vDescripcion: [''],
+      iPrioridad: [1, Validators.required]
     });
   }
 

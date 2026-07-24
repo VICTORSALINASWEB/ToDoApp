@@ -33,24 +33,17 @@
         >
           <lucide-icon [img]="(hide() ? EyeOff : Eye)"></lucide-icon>
         </button>
-      </mat-form-field>
-      <mat-form-field  class="w-full">
-        <mat-label>Confirmar Contraseña</mat-label>
-        <input matInput [type]="hideConfirmar() ? 'password' : 'text'" formControlName="p_password_hash" />
-        <button
-          matIconButton
-          matSuffix
-          (click)="clickEventConfirmar($event)"
-          [attr.aria-label]="'Hide password'"
-          [attr.aria-pressed]="hideConfirmar()"
-        >
-          <lucide-icon [img]="(hideConfirmar() ? EyeOff : Eye)"></lucide-icon>
-        </button>
-      </mat-form-field>
+      </mat-form-field> 
       <ion-button color="primary" (click)="loguearse()">
         <lucide-icon [img]="LogIn"></lucide-icon>
         Registrarse
       </ion-button>
+      <div class="text-center mt-4">
+        <span class="text-sm text-gray-500">¿Ya tienes cuenta?</span>
+        <a routerLink="/login" class="text-sm font-semibold text-emerald-600 ml-1 hover:text-emerald-700 hover:underline transition-colors">
+          Inicia sesión
+        </a>
+      </div>
       <div class="text-center">
         <strong>Vesión {{version}}</strong>
       </div>

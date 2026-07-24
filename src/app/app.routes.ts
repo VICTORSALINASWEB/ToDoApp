@@ -5,13 +5,13 @@ import { authGuard } from './core/guards/auth.guard';
 export const routes: Routes = [
   {
     path: 'login',
-    title: 'Auth/Login',
+    title: 'Login',
     // canActivate: [homeGuard],
     loadComponent: () => import('./pages/auth/login/login.component').then(m => m.LoginComponent)
   },  
   {
-    path: 'register',
-    title: 'Auth/Register',
+    path: 'registro',
+    title: 'Registro',
     // canActivate: [homeGuard],
     loadComponent: () => import('./pages/auth/registro/registro.component').then(m => m.RegistroComponent)
   },  

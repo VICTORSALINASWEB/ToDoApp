@@ -28,8 +28,7 @@ import { FormularioLogin } from '../../../core/interfaces/usuario.interface';
   ]
 })
 export class RegistroComponent  implements OnInit {
-  hide = signal(true);
-  hideConfirmar = signal(true);
+  hide = signal(true); 
 
   version =  packageInfo.version;
   form!: FormGroup<FormularioLogin>;
@@ -82,7 +81,7 @@ async loguearse() {
     p_password_hash,
     p_usuario
   }
-  await this.uiUtilService.mostrarCargando('Logueando...');
+  await this.uiUtilService.mostrarCargando('Registrando...');
   this.authService.login(param).subscribe({
       next: async (resp: UtilResponse) => {
         if (!resp.bSuccess ) {
@@ -117,11 +116,7 @@ async loguearse() {
     this.hide.set(!this.hide());
     event.stopPropagation();
   }
-
-  clickEventConfirmar(event: MouseEvent) {
-    this.hideConfirmar.set(!this.hideConfirmar());
-    event.stopPropagation();
-  }
+ 
 
   convertirMayusculas(event: Event): void {
     const input = event.target as HTMLInputElement;
