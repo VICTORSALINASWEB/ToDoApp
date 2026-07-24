@@ -305,9 +305,9 @@ export class HomeComponent implements OnInit {
           return;
         }
 
-        await this.uiUtilService.ocultarCargando();
         this.storageService.guardar('aTarea', resp.oData.aTarea);
         this.dataTarea.set(resp.oData.aTarea ?? []);
+        await this.uiUtilService.ocultarCargando();
       },
       error: async (err) => {
         await this.uiUtilService.ocultarCargando();

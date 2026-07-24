@@ -72,9 +72,10 @@ export class MainComponent {
       buttons: [
         { text: 'No', role: 'cancel' },
         { text: 'Si',  role: 'confirm',  handler: async () => {
-          this.uiUtilService.ocultarCargando();
-          this.localStorageService.limpiartodo();
-          this.storageService.limpiartodo();
+          await this.uiUtilService.mostrarCargando();
+          await this.localStorageService.limpiartodo();
+          await this.storageService.limpiartodo();
+          await this.uiUtilService.ocultarCargando();
           await this.router.navigate(['/login'], {
               replaceUrl: true
             });
