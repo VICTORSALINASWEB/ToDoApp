@@ -15,6 +15,10 @@ import {
 import { MatTabsModule } from '@angular/material/tabs';
 import { MantTareaComponent } from './mant-tarea/mant-tarea.component';
 import { DatePipe } from '@angular/common';
+import { UiUtilService } from '../../../core/services/ui-util.service';
+import { TareaService } from '../../../core/services/tarea.service';
+import { UtilResponse } from 'src/app/core/interfaces/util.interface';
+import { StorageService } from 'src/app/core/services/storage.service';
 
 
 @Component({
@@ -49,14 +53,7 @@ export class HomeComponent implements OnInit {
   index = signal(1);
   terminoBusqueda = signal<string>('');
 
-  dataTarea = signal<Tarea[]>([
-    { iIdTarea: 1, bCompletada: true, dtFecha: new Date(), iPrioridad: 2, vTitulo: 'Prueba 1', vDescripcion: 'prueba descripción 1' },
-    { iIdTarea: 2, bCompletada: true, dtFecha: new Date(), iPrioridad: 1, vTitulo: 'Prueba 2', vDescripcion: 'prueba descripción 2' },
-    { iIdTarea: 3, bCompletada: true, dtFecha: new Date(), iPrioridad: 3, vTitulo: 'Prueba 3', vDescripcion: 'prueba descripción 3' },
-    { iIdTarea: 4, bCompletada: false, dtFecha: new Date(), iPrioridad: 1, vTitulo: 'Prueba 4', vDescripcion: 'prueba descripción 4' },
-    { iIdTarea: 5, bCompletada: false, dtFecha: new Date(), iPrioridad: 3, vTitulo: 'Prueba 5', vDescripcion: 'prueba descripción 5' },
-    { iIdTarea: 6, bCompletada: false, dtFecha: new Date(), iPrioridad: 3, vTitulo: 'Prueba 6', vDescripcion: 'prueba descripción 6' },
-  ]);
+  dataTarea = signal<Tarea[]>([]);
 
   // Filtro base: aplica término de búsqueda sobre el título
   private filtrarPorBusqueda(tareas: Tarea[]): Tarea[] {
@@ -82,7 +79,10 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private alertCtrl: AlertController,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private uiUtilService: UiUtilService,
+    private tareaService: TareaService,
+    private storageService: StorageService
   ) {}
 
   ngOnInit() {
@@ -91,6 +91,8 @@ export class HomeComponent implements OnInit {
       subtitle: 'Mantenimiento de tareas',
       mostrarRefresh: true
     };
+
+    this.cargarInformacion();
   }
 
   onBuscar(valor: string) {
@@ -177,5 +179,38 @@ export class HomeComponent implements OnInit {
 
   colorPrioridad(prioridad: Tarea['iPrioridad']): string {
     return { 3: 'danger', 2: 'warning', 1: 'medium' }[prioridad] ?? '';
+  }
+
+  async cargarInformacion(){
+    this.dataTarea.set([]);
+    await this.uiUtilService.mostrarCargando();
+    this.tareaService.listaTarea()
+    .subscribe(
+      {
+        next: async (resp: UtilResponse) => {
+          if (!resp.bSuccess ) {
+            await this.uiUtilService.ocultarCargando();
+            if(resp.vMessage){
+              this.uiUtilService.toastAdvertencia(resp.vMessage);
+            }
+            return;
+          }
+
+          await this.uiUtilService.ocultarCargando();
+          this.storageService.guardar('aTarea',resp.oData.aTarea);
+          this.dataTarea.set((resp.oData.aTarea??[]));
+        },
+        error: async (err) => {
+          await this.uiUtilService.ocultarCargando();
+          const mensaje = err?.error?.vMessage ?? 'Hubo un error en el servicio';
+          setTimeout(() => this.uiUtilService.toastAdvertencia(mensaje), 30);
+        }
+      }
+    );
+
+  }
+
+  refrescarDatos(){
+    this.cargarInformacion();
   }
 }

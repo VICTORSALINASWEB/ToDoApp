@@ -1,5 +1,5 @@
 <ion-content >
-  <app-titulo [config]="tituloConfig"></app-titulo>
+  <app-titulo [config]="tituloConfig" (refresh)="refrescarDatos()"></app-titulo>
 
   <div class="relative m-2">
     <lucide-icon [img]="Search" size="18"
@@ -86,7 +86,7 @@
                         <h2>{{ itemTarea.vTitulo }}</h2>
                         <div class="task-meta">
                           <lucide-icon [img]="Calendar" size="14"></lucide-icon>
-                          <span class="title-date">{{ itemTarea.dtFecha | date:'dd/MM/yyyy · hh:mm a' }}</span>
+                          <span class="title-date">{{ itemTarea.dtFechaModificacion | date:'dd/MM/yyyy · hh:mm a' }}</span>
                         </div>
                         @if(itemTarea.vDescripcion){
                           <p>{{ itemTarea.vDescripcion }}</p>

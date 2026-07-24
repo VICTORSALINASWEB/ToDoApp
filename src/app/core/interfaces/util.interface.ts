@@ -1,4 +1,5 @@
  
+import { Tarea } from "./tarea.interface";
 import { Usuario } from "./usuario.interface"; 
 
 export interface UtilResponse {
@@ -12,6 +13,7 @@ export interface DataUtil {
   obtUsuario?: Usuario; 
   token?: string;
   expiraEn?: number; 
+  aTarea?: Tarea[];
 }
 
 export interface Prioridad {  
