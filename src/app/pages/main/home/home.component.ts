@@ -157,8 +157,15 @@ export class HomeComponent implements OnInit {
     await modal.present();
     const resp = await modal.onDidDismiss();
     if (resp.data?.status === 200) {
-      // TODO: agregar la tarea nueva devuelta desde el modal
-      // this.dataTarea.update(lista => [...lista, resp.data.tarea]);
+      setTimeout(async() => {
+        await this.uiUtilService.toastExito('Tarea creada exitosamente');
+        await this.uiUtilService.mostrarCargando();
+        let dataTareaLocal: Tarea[] = await this.storageService.obtener('aTarea')??[]
+        setTimeout(async() => {
+          await this.dataTarea.set(dataTareaLocal);
+          await this.uiUtilService.ocultarCargando();
+        }, 100);
+      },100);
     }
   }
 
@@ -173,7 +180,15 @@ export class HomeComponent implements OnInit {
     await modal.present();
     const resp = await modal.onDidDismiss();
     if (resp.data?.status === 200) {
-      // TODO: actualizar la tarea editada devuelta desde el modal
+      setTimeout(async() => {
+        await this.uiUtilService.toastExito('Tarea editada exitosamente');
+        await this.uiUtilService.mostrarCargando();
+        let dataTareaLocal: Tarea[] = await this.storageService.obtener('aTarea')??[]
+        setTimeout(async() => {
+          await this.dataTarea.set(dataTareaLocal);
+          await this.uiUtilService.ocultarCargando();
+        }, 100);
+      },100);
     }
   }
 

@@ -137,7 +137,7 @@ export class MantTareaComponent  implements OnInit {
 
               let dataTareaLocal: Tarea[] = await this.storageService.obtener('aTarea')??[]
               
-              dataTareaLocal = [...dataTareaLocal,...(resp.oData.aTarea??[])]
+              dataTareaLocal = await [...[(resp.oData.obtTarea??{})],...dataTareaLocal]
               await this.uiUtilService.ocultarCargando();
               this.storageService.guardar('aTarea',dataTareaLocal);
               this.modalCtrl.dismiss({
@@ -172,7 +172,7 @@ export class MantTareaComponent  implements OnInit {
 
               let dataTareaLocal: Tarea[] = await this.storageService.obtener('aTarea')??[]
               
-              dataTareaLocal = [...(resp.oData.aTarea??[]),...dataTareaLocal.filter(x=> x.iIdTarea !== this.iIdTarea)]
+               dataTareaLocal = await [...[(resp.oData.obtTarea??{})],...dataTareaLocal.filter(x=> x.iIdTarea !== this.iIdTarea)]
               await this.uiUtilService.ocultarCargando();
               this.storageService.guardar('aTarea',dataTareaLocal);
               this.modalCtrl.dismiss({
