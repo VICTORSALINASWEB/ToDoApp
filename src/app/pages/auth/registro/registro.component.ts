@@ -12,7 +12,8 @@ import { UiUtilService } from '../../../core/services/ui-util.service';
 import { AuthService } from '../../../core/services/auth.service';
 import { ILoginRequest } from 'src/app/core/interfaces/DTOs/Auth/ILoginRequest';
 import { UtilResponse } from 'src/app/core/interfaces/util.interface';
-import { FormularioLogin } from '../../../core/interfaces/usuario.interface';
+import { FormularioLogin, FormularioRegistro } from '../../../core/interfaces/usuario.interface';
+import { IRegistroRequest } from 'src/app/core/interfaces/DTOs/Auth/iRegistroRequest';
 
 
 @Component({
@@ -31,7 +32,7 @@ export class RegistroComponent  implements OnInit {
   hide = signal(true); 
 
   version =  packageInfo.version;
-  form!: FormGroup<FormularioLogin>;
+  form!: FormGroup<FormularioRegistro>;
   readonly LogIn = LogIn
   readonly EyeOff = EyeOff
   readonly Eye = Eye
@@ -48,12 +49,12 @@ export class RegistroComponent  implements OnInit {
 
   crearFormulario() {
     this.form = new FormGroup({
-      p_usuario: new FormControl('VICTOR', {nonNullable: true,validators: [Validators.required]}),
-      p_password_hash: new FormControl('VICTOR',{nonNullable: true,validators: [Validators.required]}),
+      usuario: new FormControl('', {nonNullable: true,validators: [Validators.required]}),
+      contrasena: new FormControl('',{nonNullable: true,validators: [Validators.required]}),
     });
   }
 
-async loguearse() {
+async registrarse() {
 
   if (this.form.invalid) {
     this.form.markAllAsTouched();
@@ -65,24 +66,24 @@ async loguearse() {
     return;
   }
 
-  const { p_password_hash, p_usuario } = this.form.getRawValue();
+  const { contrasena, usuario } = this.form.getRawValue();
 
-    if (p_usuario.trim() === '' || p_password_hash.trim() === '') {
+    if (usuario.trim() === '' || contrasena.trim() === '') {
       this.form.patchValue({
-        p_usuario: p_usuario.trim(),
-        p_password_hash: p_password_hash.trim()
+        usuario: usuario.trim(),
+        contrasena: contrasena.trim()
       })
       this.uiUtilService.toastAdvertencia('Ingrese sus credenciales');
       return;
     }
 
 
-  const param: ILoginRequest = {
-    p_password_hash,
-    p_usuario
+  const param: IRegistroRequest = {
+    contrasena,
+    usuario
   }
   await this.uiUtilService.mostrarCargando('Registrando...');
-  this.authService.login(param).subscribe({
+  this.authService.register(param).subscribe({
       next: async (resp: UtilResponse) => {
         if (!resp.bSuccess ) {
           await this.uiUtilService.ocultarCargando();
@@ -92,11 +93,8 @@ async loguearse() {
           return;
         }
 
-        const { token, obtUsuario } = resp.oData;
-        this.localStorageService.guardarToken(token??'');
-        this.localStorageService.guardarUsuario(obtUsuario);
         await this.uiUtilService.ocultarCargando();
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/login');
       },
       error: (err) => {
         this.uiUtilService.ocultarCargando();
@@ -105,13 +103,7 @@ async loguearse() {
       }
     });
   }
-
-
-  async obtenerCategorias() {
-  //  const exec = await this.categoriaService.categoriaLista('8d372cbb-fd6a-41c7-b32e-8811b12e6ee1');
-  //  console.log(exec);
-  }
-
+ 
   clickEvent(event: MouseEvent) {
     this.hide.set(!this.hide());
     event.stopPropagation();
@@ -123,6 +115,6 @@ async loguearse() {
     const valor = input.value.toUpperCase();
 
     input.value = valor;
-    this.form.get('p_usuario')?.setValue(valor, { emitEvent: false });
+    this.form.get('usuario')?.setValue(valor, { emitEvent: false });
   }
 }

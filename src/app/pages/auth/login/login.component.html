@@ -18,12 +18,12 @@
       <!-- Usuario -->
         <mat-form-field  class="w-full">
           <mat-label>Usuario</mat-label>
-          <input matInput (input)="convertirMayusculas($event)" formControlName="p_usuario" placeholder="">
+          <input matInput (input)="convertirMayusculas($event)" formControlName="usuario" placeholder="">
         </mat-form-field>
       <!-- Contraseña -->
       <mat-form-field  class="w-full">
         <mat-label>Contraseña</mat-label>
-        <input matInput [type]="hide() ? 'password' : 'text'" formControlName="p_password_hash" />
+        <input matInput [type]="hide() ? 'password' : 'text'" formControlName="contrasena" />
         <button
           matIconButton
           matSuffix

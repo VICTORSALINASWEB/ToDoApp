@@ -5,13 +5,8 @@ export const authGuard: CanActivateFn = () => {
   const router = inject(Router);
   const localStorageService = inject(LocalStorageService);
 
-  const token = localStorageService.obtenerToken();
-  // const expirado = localStorageService.tokenExpirado();
-
-  // if (token && !expirado) return true;
-  if (token) return true;
-
-  // localStorageService.eliminarToken(); // limpia si expiró
+  const token = localStorageService.obtenerToken(); 
+  if (token) return true; 
   router.navigateByUrl('/login');
   return false;
 };

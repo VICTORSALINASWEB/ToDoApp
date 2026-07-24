@@ -6,18 +6,18 @@ export const routes: Routes = [
   {
     path: 'login',
     title: 'Login',
-    // canActivate: [homeGuard],
+    canActivate: [homeGuard],
     loadComponent: () => import('./pages/auth/login/login.component').then(m => m.LoginComponent)
   },  
   {
     path: 'registro',
     title: 'Registro',
-    // canActivate: [homeGuard],
+    canActivate: [homeGuard],
     loadComponent: () => import('./pages/auth/registro/registro.component').then(m => m.RegistroComponent)
   },  
   {
     path: 'main',
-    // canActivate: [authGuard],
+    canActivate: [authGuard],
     loadComponent: () => import('./pages/main/main.component').then(m => m.MainComponent),
     children: [
       // HOME

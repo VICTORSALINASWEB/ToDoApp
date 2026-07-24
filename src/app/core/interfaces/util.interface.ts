@@ -1,5 +1,5 @@
  
-import { Usuario, UsuarioLogin } from "./usuario.interface"; 
+import { Usuario } from "./usuario.interface"; 
 
 export interface UtilResponse {
     iStatus:  number;
@@ -8,11 +8,10 @@ export interface UtilResponse {
     oData:    DataUtil;
 }
 
-export interface DataUtil {
-  
-  aUsuario?: Usuario[];
+export interface DataUtil { 
   obtUsuario?: Usuario; 
-  token?: string; 
+  token?: string;
+  expiraEn?: number; 
 }
 
 export interface Prioridad {  

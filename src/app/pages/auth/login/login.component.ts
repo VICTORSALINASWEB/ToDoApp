@@ -47,8 +47,8 @@ export class LoginComponent  implements OnInit {
 
   crearFormulario() {
     this.form = new FormGroup({
-      p_usuario: new FormControl('VICTOR', {nonNullable: true,validators: [Validators.required]}),
-      p_password_hash: new FormControl('VICTOR',{nonNullable: true,validators: [Validators.required]}),
+      usuario: new FormControl('VICTOR', {nonNullable: true,validators: [Validators.required]}),
+      contrasena: new FormControl('VICTOR',{nonNullable: true,validators: [Validators.required]}),
     });
   }
 
@@ -64,12 +64,12 @@ async loguearse() {
     return;
   }
 
-  const { p_password_hash, p_usuario } = this.form.getRawValue();
+  const { contrasena, usuario } = this.form.getRawValue();
   
-    if (p_usuario.trim() === '' || p_password_hash.trim() === '') {
+    if (usuario.trim() === '' || contrasena.trim() === '') {
       this.form.patchValue({
-        p_usuario: p_usuario.trim(),
-        p_password_hash: p_password_hash.trim()
+        usuario: usuario.trim(),
+        contrasena: contrasena.trim()
       })
       this.uiUtilService.toastAdvertencia('Ingrese sus credenciales');
       return;
@@ -77,8 +77,8 @@ async loguearse() {
 
 
   const param: ILoginRequest = {
-    p_password_hash,
-    p_usuario 
+    contrasena,
+    usuario 
   }
   await this.uiUtilService.mostrarCargando('Logueando...');
   this.authService.login(param).subscribe({
@@ -104,13 +104,7 @@ async loguearse() {
       }
     });
   }
-
-
-  async obtenerCategorias() {
-  //  const exec = await this.categoriaService.categoriaLista('8d372cbb-fd6a-41c7-b32e-8811b12e6ee1');
-  //  console.log(exec);
-  }
-
+ 
   clickEvent(event: MouseEvent) {
     this.hide.set(!this.hide());
     event.stopPropagation();
@@ -121,6 +115,6 @@ async loguearse() {
     const valor = input.value.toUpperCase();
 
     input.value = valor;
-    this.form.get('p_usuario')?.setValue(valor, { emitEvent: false });
+    this.form.get('usuario')?.setValue(valor, { emitEvent: false });
   }
 }
