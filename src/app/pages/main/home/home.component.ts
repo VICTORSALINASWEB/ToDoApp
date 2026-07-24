@@ -59,7 +59,7 @@ export class HomeComponent implements OnInit {
   private filtrarPorBusqueda(tareas: Tarea[]): Tarea[] {
     const term = this.terminoBusqueda().toLowerCase().trim();
     if (!term) return tareas;
-    return tareas.filter(t => t.vTitulo.toLowerCase().includes(term));
+    return tareas.filter(t => (t.vTitulo??'').toLowerCase().includes(term));
   }
 
   // Computed por cada tab
@@ -112,7 +112,7 @@ export class HomeComponent implements OnInit {
           text: 'Cancelar',
           role: 'cancel',
           handler: () => {
-            checkbox.checked = tarea.bCompletada;
+            checkbox.checked = (tarea.bCompletada??true);
           }
         },
         {
@@ -178,7 +178,7 @@ export class HomeComponent implements OnInit {
   }
 
   colorPrioridad(prioridad: Tarea['iPrioridad']): string {
-    return { 3: 'danger', 2: 'warning', 1: 'medium' }[prioridad] ?? '';
+    return { 3: 'danger', 2: 'warning', 1: 'medium' }[(prioridad??1)] ?? '';
   }
 
   async cargarInformacion(){

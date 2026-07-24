@@ -1,6 +1,6 @@
 
 export interface IRegistroTareaRequest {
-    titulo: string;
+    titulo?: string;
     descripcion?: string
-    prioridad: number
+    prioridad?: number
 }

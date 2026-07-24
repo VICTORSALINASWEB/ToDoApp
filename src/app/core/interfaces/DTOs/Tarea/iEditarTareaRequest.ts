@@ -1,6 +1,6 @@
 
 export interface IEditarTareaRequest {
-    titulo: string;
+    titulo?: string;
     descripcion?: string
-    prioridad: number
+    prioridad?: number
 }

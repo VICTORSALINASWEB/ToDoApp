@@ -14,6 +14,7 @@ export interface DataUtil {
   token?: string;
   expiraEn?: number; 
   aTarea?: Tarea[];
+  obtTarea?: Tarea;
 }
 
 export interface Prioridad {  

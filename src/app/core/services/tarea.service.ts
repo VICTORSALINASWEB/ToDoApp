@@ -23,7 +23,7 @@ export class TareaService {
     }
     
     registroTarea(request: IRegistroTareaRequest): Observable<UtilResponse> {
-      return this.http.post<UtilResponse>(`${this.API_URL}/register`, request);
+      return this.http.post<UtilResponse>(`${this.API_URL}`, request);
     }
 
     editarTarea(request: IEditarTareaRequest,iIdTarea: number): Observable<UtilResponse> {
