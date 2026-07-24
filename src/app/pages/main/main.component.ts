@@ -61,7 +61,8 @@ export class MainComponent {
   ) {
     this.config = {
       title: 'ToDo App',
-      iMostrarMenu: true
+      iMostrarMenu: true,
+      showSessionTimer: true
     };
   }
 

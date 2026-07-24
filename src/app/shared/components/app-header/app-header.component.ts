@@ -6,6 +6,7 @@ import {
 import { LucideAngularModule, X, ArrowLeft, RefreshCw, WifiOff,Wifi } from 'lucide-angular';
 import { HeaderConfig } from '../../../core/interfaces/header-config.interface';
 import { NetworkService } from 'src/app/core/services/network.service';
+import { SessionCountdownComponent } from '../session-countdown/session-countdown.component'
 
 @Component({
   selector: 'app-header',
@@ -16,7 +17,7 @@ import { NetworkService } from 'src/app/core/services/network.service';
     CommonModule,
     IonHeader, IonToolbar, IonTitle,
     IonButtons, IonButton,
-    LucideAngularModule, IonMenuButton
+    LucideAngularModule, IonMenuButton,SessionCountdownComponent
   ],
 })
 export class AppHeaderComponent implements OnInit {

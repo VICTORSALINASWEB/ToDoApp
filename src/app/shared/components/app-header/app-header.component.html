@@ -32,6 +32,9 @@
 
     <!-- ── SLOT END ────────────────────────────────── -->
     <ion-buttons slot="end">
+        @if (config.showSessionTimer) {
+          <app-session-countdown></app-session-countdown>
+        }
       @if (config.iMostrarMenu) {
         @if (networkService.isOnline()) {
           <ion-button fill="clear" color="success">

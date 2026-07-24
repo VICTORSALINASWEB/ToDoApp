@@ -18,4 +18,5 @@ export interface HeaderConfig {
   transparent?:  boolean;    // header transparente
 
   iMostrarMenu?: boolean;
+  showSessionTimer?: boolean; 
 }

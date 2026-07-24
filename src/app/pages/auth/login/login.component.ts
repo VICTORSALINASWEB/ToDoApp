@@ -91,8 +91,8 @@ async loguearse() {
           return;
         }
 
-        const { token, obtUsuario } = resp.oData; 
-        this.localStorageService.guardarToken(token??'');
+        const { token, obtUsuario,expiraEn } = resp.oData; 
+        this.localStorageService.guardarToken(token??'',expiraEn ?? 3600);
         this.localStorageService.guardarUsuario(obtUsuario);
         await this.uiUtilService.ocultarCargando();
         this.router.navigateByUrl('/');

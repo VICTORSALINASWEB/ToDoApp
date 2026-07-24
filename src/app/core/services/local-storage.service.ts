@@ -4,6 +4,9 @@
    Motor: window.localStorage (síncrono, simple)
 ========================================================= */
 import { Injectable } from '@angular/core';
+const TOKEN_KEY = 'auth_token';
+const USUARIO_KEY = 'auth_usuario';
+const EXPIRA_EN_KEY = 'auth_expira_en'; // timestamp absoluto en ms
 
 @Injectable({ providedIn: 'root' })
 export class LocalStorageService {
@@ -45,16 +48,31 @@ export class LocalStorageService {
 
   // ── Atajos de uso común ───────────────────────────────────
 
-  // Token de sesión
-  guardarToken(token: string): void        { this.guardar('auth_token', token);    }
-  obtenerToken(): string | null            { return this.obtener<string>('auth_token'); }
-  eliminarToken(): void                   { this.eliminar('auth_token');         }
+  guardarToken(token: string, expiraEnSegundos: number): void {
+    localStorage.setItem(TOKEN_KEY, token);
 
-  // Usuario activo
-  guardarUsuario(user: any): void             { this.guardar('obtUsuario', user);   }
-  obtenerUsuario<T>(): T | null               { return this.obtener<T>('obtUsuario'); }
-  eliminarUsuario(): void                    { this.eliminar('obtUsuario');       }
+    const expiraEnMs = Date.now() + expiraEnSegundos * 1000;
+    localStorage.setItem(EXPIRA_EN_KEY, expiraEnMs.toString());
+  }
 
+  obtenerToken(): string | null {
+    return localStorage.getItem(TOKEN_KEY);
+  }
+
+  obtenerExpiracion(): number | null {
+    const valor = localStorage.getItem(EXPIRA_EN_KEY);
+    return valor ? parseInt(valor, 10) : null;
+  }
+
+  guardarUsuario(usuario: unknown): void {
+    localStorage.setItem(USUARIO_KEY, JSON.stringify(usuario));
+  }
+
+  obtenerUsuario<T>(): T | null {
+    const valor = localStorage.getItem(USUARIO_KEY);
+    return valor ? JSON.parse(valor) : null;
+  }
+ 
   // Preferencias de UI
   guardarTheme(theme: 'light' | 'dark'): void { this.guardar('theme', theme);     }
   getTheme(): 'light' | 'dark'            { return this.obtener<'light' | 'dark'>('theme') ?? 'light'; }
