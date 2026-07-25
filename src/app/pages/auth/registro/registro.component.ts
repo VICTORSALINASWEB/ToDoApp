@@ -1,7 +1,6 @@
 import { Component, OnInit, signal } from '@angular/core';
 import packageInfo from './../../../../../package.json';
-import { Router } from '@angular/router';
-import { LocalStorageService } from 'src/app/core/services/local-storage.service';
+import { Router, RouterLink } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -10,10 +9,10 @@ import { LogIn, LucideAngularModule,Eye,EyeOff } from 'lucide-angular';
 import {MatIconModule} from '@angular/material/icon';
 import { UiUtilService } from '../../../core/services/ui-util.service';
 import { AuthService } from '../../../core/services/auth.service';
-import { ILoginRequest } from 'src/app/core/interfaces/DTOs/Auth/ILoginRequest';
 import { UtilResponse } from 'src/app/core/interfaces/util.interface';
-import { FormularioLogin, FormularioRegistro } from '../../../core/interfaces/usuario.interface';
+import {  FormularioRegistro } from '../../../core/interfaces/usuario.interface';
 import { IRegistroRequest } from 'src/app/core/interfaces/DTOs/Auth/iRegistroRequest';
+import { NetworkService } from 'src/app/core/services/network.service';
 
 
 @Component({
@@ -25,7 +24,7 @@ import { IRegistroRequest } from 'src/app/core/interfaces/DTOs/Auth/iRegistroReq
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    LucideAngularModule, MatIconModule
+    LucideAngularModule, MatIconModule,RouterLink
   ]
 })
 export class RegistroComponent  implements OnInit {
@@ -37,10 +36,10 @@ export class RegistroComponent  implements OnInit {
   readonly EyeOff = EyeOff
   readonly Eye = Eye
   constructor(
-    private router: Router,
-    private localStorageService: LocalStorageService,
+    private router: Router, 
     private uiUtilService: UiUtilService,
-    private authService: AuthService
+    private authService: AuthService,
+    public networkService: NetworkService
   ) {
     this.crearFormulario();
   }
@@ -55,6 +54,11 @@ export class RegistroComponent  implements OnInit {
   }
 
 async registrarse() {
+
+  if(!this.networkService.isOnline()){
+    this.uiUtilService.toastError('No tiene conexión a internet');
+    return;
+  }
 
   if (this.form.invalid) {
     this.form.markAllAsTouched();

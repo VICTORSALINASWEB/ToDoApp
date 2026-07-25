@@ -23,10 +23,10 @@ import { MatOptionModule } from '@angular/material/core';
 import { TareaService } from '../../../../core/services/tarea.service';
 import { UiUtilService } from 'src/app/core/services/ui-util.service';
 import { StorageService } from 'src/app/core/services/storage.service';
-import { IRegistroRequest } from 'src/app/core/interfaces/DTOs/Auth/iRegistroRequest';
 import { FormularioTareaRegistro, Tarea } from 'src/app/core/interfaces/tarea.interface';
 import { IRegistroTareaRequest } from 'src/app/core/interfaces/DTOs/Tarea/iRegistroTareaRequest';
 import { IEditarTareaRequest } from 'src/app/core/interfaces/DTOs/Tarea/iEditarTareaRequest';
+import { NetworkService } from 'src/app/core/services/network.service';
 
 @Component({
   selector: 'app-mant-tarea',
@@ -77,7 +77,8 @@ export class MantTareaComponent  implements OnInit {
     private modalCtrl: ModalController,
     private tareaService: TareaService,
     private uiUtilService: UiUtilService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    public networkService: NetworkService
   ) {
     this.config = {
       title: '',
@@ -108,6 +109,10 @@ export class MantTareaComponent  implements OnInit {
   }
 
   async guardar() {
+    if(!this.networkService.isOnline()){
+      this.uiUtilService.toastError('No tiene conexión a internet');
+      return;
+    }
     if (this.tareaForm.invalid) {
       this.tareaForm.markAllAsTouched();
       return;

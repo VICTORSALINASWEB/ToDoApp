@@ -10,8 +10,8 @@
 
     <div class="text-center mb-4">
       <i class="pi pi-user text-5xl text-primary mb-3"></i>
-      <h2 class="title">Registro</h2>
-      <span class="subtitle">Registrate para continuar</span>
+      <h2 class="title">Registrarse</h2>
+      <span class="subtitle">Registrarte para continuar</span>
     </div>
 
     <form [formGroup]="form" class="form" autocomplete="off">
@@ -33,20 +33,24 @@
         >
           <lucide-icon [img]="(hide() ? EyeOff : Eye)"></lucide-icon>
         </button>
-      </mat-form-field> 
+      </mat-form-field>
       <ion-button color="primary" (click)="registrarse()">
         <lucide-icon [img]="LogIn"></lucide-icon>
         Registrarse
       </ion-button>
       <div class="text-center mt-4">
-        <span class="text-sm text-gray-500">¿Ya tienes cuenta?</span>
-        <a routerLink="/login" class="text-sm font-semibold text-emerald-600 ml-1 hover:text-emerald-700 hover:underline transition-colors">
-          Inicia sesión
-        </a>
-      </div>
-      <div class="text-center">
-        <strong>Vesión {{version}}</strong>
-      </div>
+      
+      <span class="text-sm text-gray-500">¿No tienes cuenta?</span>
+      <a routerLink="/login" class="text-sm font-semibold text-emerald-600 ml-1 hover:text-emerald-700 hover:underline transition-colors">
+        Iniciar Sessión
+      </a>
+    </div>
+    <div class="text-center">
+      <strong>Vesión {{version}}</strong>
+      @if(!networkService.isOnline()){
+        <p class="text-red-500">Sin conexión.</p>
+      }
+    </div>
     </form>
 
   </div>

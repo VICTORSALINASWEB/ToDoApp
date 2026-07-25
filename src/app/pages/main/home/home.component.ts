@@ -5,9 +5,7 @@ import { Tarea } from 'src/app/core/interfaces/tarea.interface';
 import { AppTituloComponent } from 'src/app/shared/components/app-titulo/app-titulo.component';
 import {
   IonContent,
-  IonList,
-  IonItemSliding,
-  IonSearchbar,
+  IonList, 
   IonFab,
   IonFabButton,
   AlertController,
@@ -16,8 +14,7 @@ import {
   IonCardContent,
   IonCheckbox,
   IonBadge,
-  IonButton,
-  IonButtons,
+  IonButton, 
 } from '@ionic/angular/standalone';
 import {
   LucideAngularModule,
@@ -55,13 +52,11 @@ import { ICompletarTareaRequest } from 'src/app/core/interfaces/DTOs/Tarea/iComp
     FormsModule,
     AppTituloComponent,
     IonContent,
-    IonList,
-    IonSearchbar,
+    IonList, 
     IonFab,
     IonFabButton,
     LucideAngularModule,
-    MatTabsModule,
-    IonButtons,
+    MatTabsModule, 
     IonButton,
     DatePipe,
   ],

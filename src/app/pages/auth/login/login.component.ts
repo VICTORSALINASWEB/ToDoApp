@@ -13,6 +13,7 @@ import { AuthService } from '../../../core/services/auth.service';
 import { ILoginRequest } from 'src/app/core/interfaces/DTOs/Auth/ILoginRequest';
 import { UtilResponse } from 'src/app/core/interfaces/util.interface';
 import { FormularioLogin } from '../../../core/interfaces/usuario.interface';
+import { NetworkService } from 'src/app/core/services/network.service';
 
 @Component({
   selector: 'app-login',
@@ -38,7 +39,8 @@ export class LoginComponent  implements OnInit {
     private router: Router,
     private localStorageService: LocalStorageService, 
     private uiUtilService: UiUtilService,
-    private authService: AuthService
+    private authService: AuthService,
+    public networkService: NetworkService
   ) {
     this.crearFormulario();
   }
@@ -53,6 +55,11 @@ export class LoginComponent  implements OnInit {
   }
 
 async loguearse() {
+
+  if(!this.networkService.isOnline()){
+    this.uiUtilService.toastError('No tiene conexión a internet');
+    return
+  }
 
   if (this.form.invalid) {
     this.form.markAllAsTouched();
