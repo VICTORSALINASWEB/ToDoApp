@@ -1,8 +1,10 @@
 // session-timer.service.ts
 import { Injectable, inject } from '@angular/core';
-import { interval, Observable, Subject, timer } from 'rxjs';
+import { interval, Observable, Subject } from 'rxjs';
 import { map, takeUntil, filter, distinctUntilChanged } from 'rxjs/operators';
+import { AlertController } from '@ionic/angular/standalone';
 import { LocalStorageService } from './local-storage.service';
+import { StorageService } from './storage.service';
 import { Router } from '@angular/router';
 
 export interface EstadoSesion {
@@ -16,10 +18,13 @@ export interface EstadoSesion {
 @Injectable({ providedIn: 'root' })
 export class SessionTimerService {
   private localStorageService = inject(LocalStorageService);
+  private storageService = inject(StorageService);
+  private alertCtrl = inject(AlertController);
   private router = inject(Router);
 
   private detener$ = new Subject<void>();
   private avisoMostrado = false;
+  private alertaExpiradaMostrada = false; // evita mostrar la alerta más de una vez
 
   // Umbral para considerar "por expirar" (5 minutos)
   private readonly UMBRAL_AVISO_SEGUNDOS = 5 * 60;
@@ -27,6 +32,7 @@ export class SessionTimerService {
   iniciar(): Observable<EstadoSesion> {
     this.detener$ = new Subject<void>();
     this.avisoMostrado = false;
+    this.alertaExpiradaMostrada = false;
 
     return interval(1000).pipe(
       takeUntil(this.detener$),
@@ -69,7 +75,32 @@ export class SessionTimerService {
 
   private forzarLogout(): void {
     this.detener();
-    this.localStorageService.limpiartodo();
+
+    if (this.alertaExpiradaMostrada) return;
+    this.alertaExpiradaMostrada = true;
+ 
+    this.mostrarAlertaExpirada();
+  }
+
+  private async mostrarAlertaExpirada(): Promise<void> {
+    const alert = await this.alertCtrl.create({
+      header: 'Sesión expirada',
+      message: 'Tu tiempo de sesión ha terminado. Por favor, inicia sesión nuevamente.',
+      backdropDismiss: false,
+      buttons: [
+        {
+          text: 'OK',
+          handler: async () => {
+            await this.localStorageService.limpiartodo();
+            await this.storageService.limpiartodo();
+          },
+        },
+      ],
+    });
+
+    await alert.present();
+    await alert.onDidDismiss();
+
     this.router.navigateByUrl('/login');
   }
 }
